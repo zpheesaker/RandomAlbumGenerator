@@ -10,8 +10,13 @@ body { margin: 0; padding: 10px; background: #f5f7fa; color: #333; line-height: 
 .right-panel { flex: 1 1 500px; max-height: 100%; overflow: hidden; }
 
 h2 { margin-top: 0; margin-bottom: 5px; font-size: 1.1rem; }
-label { display: block; margin: 8px 0 2px; font-weight: bold; }
+label, .lbl-like { display: block; margin: 8px 0 2px; font-weight: bold; }
 .check-box-label { font-weight: normal; display: flex; align-items: center; gap: 8px; cursor: pointer; margin: 10px 0; }
+
+/* Collapsible Mobile Sections */
+details.mobile-collapse > summary { cursor: pointer; list-style-position: inside; }
+details.mobile-collapse > summary h2 { display: inline-block; margin-bottom: 0; }
+.desc-contents { margin-top: 8px; }
 
 /* Inputs */
 input[type="text"] { width: 100%; padding: 6px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 4px; }
@@ -47,6 +52,12 @@ summary:hover { color: #275c8c; }
 details > div { margin-top: 2px; }
 
 /* Responsive adjustments */
+@media (min-width: 901px) {
+    details.mobile-collapse > summary { pointer-events: none; list-style: none; }
+    details.mobile-collapse > summary::-webkit-details-marker { display: none; }
+    details.mobile-collapse[open] > summary { margin-bottom: 5px; }
+}
+
 @media (max-width: 900px) {
     #app { flex-direction: column; height: auto; }
     .panel { overflow: visible; }

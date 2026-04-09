@@ -12,20 +12,28 @@
     <div id="app">
         <!-- Left Panel: Filters & Search -->
         <div class="panel left-panel">
-            <h2>Filters & Search</h2>
+            <details class="mobile-collapse" id="grpFilters">
+                <summary><h2>Filters & Search</h2></summary>
+                
+                <details class="mobile-collapse" id="grpGenres">
+                    <summary class="lbl-like">Genre Hierarchy</summary>
+                    <div id="genreTree" class="scroll-box">Loading genres...</div>
+                </details>
+                
+                <details class="mobile-collapse" id="grpDesc">
+                    <summary class="lbl-like">Descriptors</summary>
+                    <div class="desc-contents">
+                        <input type="text" id="txtSearchDescriptors" placeholder="Search descriptors...">
+                        <div class="actions-row">
+                            <button id="btnSelectAll">Select All</button>
+                            <button id="btnDeselectAll">Deselect All</button>
+                        </div>
+                        <div id="descriptorList" class="scroll-box">Loading descriptors...</div>
+                    </div>
+                </details>
+            </details>
             
-            <label>Genre Hierarchy</label>
-            <div id="genreTree" class="scroll-box">Loading genres...</div>
-            
-            <label>Descriptors</label>
-            <input type="text" id="txtSearchDescriptors" placeholder="Search descriptors...">
-            <div class="actions-row">
-                <button id="btnSelectAll">Select All</button>
-                <button id="btnDeselectAll">Deselect All</button>
-            </div>
-            <div id="descriptorList" class="scroll-box">Loading descriptors...</div>
-            
-            <div class="actions-row actions-main">
+            <div class="actions-row actions-main" style="margin-top: 15px;">
                 <button id="btnRandom" class="primary-btn">Pick Random Album</button>
                 <button id="btnClear" class="secondary-btn">Clear Filters</button>
             </div>

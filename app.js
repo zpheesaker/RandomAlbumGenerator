@@ -26,7 +26,16 @@ const els = {
 function getAlbumId(a) { return `${a.artist_name} - ${a.release_name}`; }
 
 // --- Initialization ---
+function initMobileCollapses() {
+    const isMobile = window.innerWidth <= 900;
+    document.querySelectorAll('.mobile-collapse').forEach(d => {
+        d.open = !isMobile;
+    });
+}
+window.addEventListener('resize', initMobileCollapses);
+
 window.addEventListener('DOMContentLoaded', async () => {
+    initMobileCollapses();
     try {
         const [csvRes, jsonRes, descRes] = await Promise.all([
             fetch('Data/rym_clean1.csv'),

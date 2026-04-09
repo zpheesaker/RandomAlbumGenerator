@@ -220,10 +220,19 @@ function displayAlbum(album) {
     
     // Generate dynamic streaming links!
     const query = encodeURIComponent(`${album.artist_name} ${album.release_name}`);
-    els.btnSpotify.href = `https://open.spotify.com/search/${query}/albums`;
-    els.btnApple.href = `https://music.apple.com/us/search?term=${query}`;
-    els.btnYoutube.href = `https://www.youtube.com/results?search_query=${query} full album`;
-    els.btnQobuz.href = `https://www.qobuz.com/search?q=${query}`;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        els.btnSpotify.href = `spotify:search:${query}`;
+        els.btnApple.href = `music://search?term=${query}`;
+        els.btnYoutube.href = `youtube://results?search_query=${query}+full+album`;
+        els.btnQobuz.href = `qobuz://search?q=${query}`;
+    } else {
+        els.btnSpotify.href = `https://open.spotify.com/search/${query}/albums`;
+        els.btnApple.href = `https://music.apple.com/us/search?term=${query}`;
+        els.btnYoutube.href = `https://www.youtube.com/results?search_query=${query} full album`;
+        els.btnQobuz.href = `https://www.qobuz.com/search?q=${query}`;
+    }
     
     els.streamingRow.style.display = "flex";
 }

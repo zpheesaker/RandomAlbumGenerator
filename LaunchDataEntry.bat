@@ -1,0 +1,3 @@
+@echo off
+echo Launching the Data Entry Tool with Merge functionality...
+powershell -ExecutionPolicy Bypass -WindowStyle Hidden -File "%~dp0Code\DataEntryTool.ps1"

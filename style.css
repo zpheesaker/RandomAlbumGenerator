@@ -64,6 +64,30 @@ details > div { margin-top: 2px; }
     .left-panel, .right-panel { flex: auto; max-height: none; }
     .scroll-box { height: 250px; max-height: none; }
     pre { height: 350px; flex: none; }
+    
+    /* Style collapsibles like intuitive buttons on mobile */
+    details.mobile-collapse > summary.lbl-like {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #e0e6eb;
+        padding: 8px 12px;
+        border-radius: 4px;
+        margin-top: 8px;
+        font-size: 0.95rem;
+        color: #333;
+    }
+    details.mobile-collapse > summary.lbl-like::after {
+        content: '▼';
+        font-size: 0.75rem;
+        transition: transform 0.2s ease-in-out;
+    }
+    details.mobile-collapse[open] > summary.lbl-like::after {
+        transform: rotate(180deg);
+    }
+    details.mobile-collapse > summary.lbl-like::-webkit-details-marker {
+        display: none; /* Hide default marker */
+    }
 }
 
 .site-footer { text-align: center; margin-top: 15px; font-size: 0.85rem; color: #666; }

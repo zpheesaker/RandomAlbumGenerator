@@ -24,7 +24,8 @@ const els = {
     streamingRow: document.getElementById('streamingLinks'),
     btnSpotify: document.getElementById('btnSpotify'),
     btnApple: document.getElementById('btnApple'),
-    btnYoutube: document.getElementById('btnYoutube')
+    btnYoutube: document.getElementById('btnYoutube'),
+    btnQobuz: document.getElementById('btnQobuz')
 };
 
 function getAlbumId(a) { return `${a.artist_name} - ${a.release_name}`; }
@@ -222,6 +223,7 @@ function displayAlbum(album) {
     els.btnSpotify.href = `https://open.spotify.com/search/${query}/albums`;
     els.btnApple.href = `https://music.apple.com/us/search?term=${query}`;
     els.btnYoutube.href = `https://www.youtube.com/results?search_query=${query} full album`;
+    els.btnQobuz.href = `https://www.qobuz.com/us-en/search?q=${query}`;
     
     els.streamingRow.style.display = "flex";
 }

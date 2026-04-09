@@ -51,6 +51,8 @@ pre { background: #f9fafc; padding: 10px; border: 1px solid #ccc; border-radius:
 #btnApple:hover { background: #ffe4e6; }
 #btnYoutube { border: 1px solid #FF0000; color: #FF0000; background: #fef2f2; }
 #btnYoutube:hover { background: #fee2e2; }
+#btnQobuz { border: 1px solid #000000; color: #000000; background: #ffffff; }
+#btnQobuz:hover { background: #f0f0f0; }
 
 /* Status & Counts */
 .status-lbl { font-weight: bold; margin-top: 10px; }

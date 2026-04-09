@@ -1,0 +1,60 @@
+/* Basic App Reset & Typography */
+* { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+body { margin: 0; padding: 10px; background: #f5f7fa; color: #333; line-height: 1.5; font-size: 14px; }
+
+#app { display: flex; flex-wrap: wrap; gap: 10px; max-width: 1200px; margin: 0 auto; height: 95vh; }
+.panel { background: white; padding: 15px; border: 1px solid #ddd; border-radius: 8px; flex: 1; display: flex; flex-direction: column; }
+
+/* Panel Sizes */
+.left-panel { flex: 0 0 350px; max-height: 100%; overflow: hidden; }
+.right-panel { flex: 1 1 500px; max-height: 100%; overflow: hidden; }
+
+h2 { margin-top: 0; margin-bottom: 5px; font-size: 1.1rem; }
+label { display: block; margin: 8px 0 2px; font-weight: bold; }
+.check-box-label { font-weight: normal; display: flex; align-items: center; gap: 8px; cursor: pointer; margin: 10px 0; }
+
+/* Inputs */
+input[type="text"] { width: 100%; padding: 6px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 4px; }
+.scroll-box { flex: 1; min-height: 100px; max-height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; background: #f9fafc; margin-bottom: 5px; }
+
+/* Buttons & Actions */
+.actions-row { display: flex; gap: 5px; margin-bottom: 5px; }
+button { padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; flex: 1; background: #e0e6eb; font-size: 13px;}
+button:hover { background: #d0d6db; }
+.primary-btn { background: #275c8c; color: white; border: none; font-weight: bold; padding: 10px; }
+.primary-btn:hover { background: #1c4468; }
+.secondary-btn { background: #e0e6eb; padding: 10px;}
+.small-btn { padding: 4px 8px; flex: 0; width: auto; font-size: 12px;}
+
+/* Search & Results Header */
+.search-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;}
+.search-header h2 { margin: 0; }
+.search-results { list-style: none; padding: 0; margin: 0; max-height: 100px; overflow-y: auto; border: 1px solid #ccc; border-radius: 4px; background: white; flex-shrink: 0; }
+.search-results li { padding: 4px 8px; cursor: pointer; border-bottom: 1px solid #eee; }
+.search-results li.active, .search-results li:hover { background: #eef; }
+
+/* Details Panel */
+pre { background: #f9fafc; padding: 10px; border: 1px solid #ccc; border-radius: 4px; flex: 1; overflow-y: auto; font-family: Consolas, monospace; white-space: pre-wrap; font-size: 13px; margin: 5px 0;}
+
+/* Status & Counts */
+.status-lbl { font-weight: bold; margin-top: 10px; }
+.text-success { color: green; font-weight: normal; }
+
+/* Tree specific */
+details { margin-left: 15px; }
+summary { cursor: pointer; padding: 2px 0; }
+summary:hover { color: #275c8c; }
+details > div { margin-top: 2px; }
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    #app { flex-direction: column; height: auto; }
+    .panel { overflow: visible; }
+    .left-panel, .right-panel { flex: auto; max-height: none; }
+    .scroll-box { height: 250px; max-height: none; }
+    pre { height: 350px; flex: none; }
+}
+
+.site-footer { text-align: center; margin-top: 15px; font-size: 0.85rem; color: #666; }
+.site-footer a { color: #275c8c; text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }

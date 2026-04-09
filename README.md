@@ -1,18 +1,19 @@
 # Random Album Generator
 
-A PowerShell-based GUI application that generates random album recommendations. 
+A dual-platform (Web & PowerShell) GUI application that generates random album recommendations. 
 
 > **Note:** This project was "vibe coded"
 
 ## Features
-* Provides random album selections through an easy-to-use graphical interface.
+* **Cross-Platform Web App:** Fully responsive HTML/JS web application that can be hosted on GitHub Pages and runs perfectly on desktop and mobile browsers.
+* **PowerShell Desktop App:** Native Windows GUI for local usage.
 * Filters or selects based on descriptors and genres.
 * **Built-in Data Entry Tool**: Includes a secondary GUI tool to easily input new albums, merge data, and map out your JSON genre hierarchy and descriptor references automatically!
 
 ## Data Source
 The data used by this application is sourced from [Rate Your Music (RYM)](https://rateyourmusic.com/). You can often find datasets with this structure online, I found one here: [https://www.kaggle.com/datasets/tobennao/rym-top-5000/data]).
 
-**Note:** To respect RYM's Terms of Service regarding data scraping and redistribution, the actual data files are **not included** in this repository. 
+Genre hierarchy was found in this github repo [https://github.com/FlakyBlueJay/mb-rym-hierarchy/blob/main/RateYourMusic%20Genre%20Hierarchy.txt]
 
 ## Setup & Installation
 To run this application locally, you will need to provide your own data files in the `Data/` directory.
@@ -54,8 +55,23 @@ If you have your own RYM dataset export, you can place it inside the `Data/` fol
      `descriptor`, `count`
      *(Example row: `malevocals,3542`)*
 
-## Usage
-Once your data files are in place, simply run the batch script to launch the GUI:
+## Usage (Web Version - Recommended)
+The web application (`index.html`) is fully responsive and runs entirely in your browser using local files or GitHub Pages. No server backend is required!
+
+**To Run Locally:**
+1. Double-click **`RunWebServer.bat`**. This spins up a lightweight local Python server.
+2. Open your browser to `http://localhost:8000`.
+
+**To Host on GitHub Pages:**
+Push this repository to GitHub and enable "Pages" targeting the `main` branch. The application will effortlessly parse the `Data/` folder remotely!
+
+**Mobile View:**
+The CSS is fully modular. When opened on a phone or small window (under 900px wide), the desktop side-by-side grid automatically collapses into a vertical touch-friendly stack.
+
+---
+
+## Usage (Desktop Version)
+Once your data files are in place, simply run the batch script to launch the Windows GUI:
 
 Double-click `Launch.bat` or run it from the command line:
 ```cmd

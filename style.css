@@ -41,6 +41,17 @@ button:hover { background: #d0d6db; }
 /* Details Panel */
 pre { background: #f9fafc; padding: 10px; border: 1px solid #ccc; border-radius: 4px; flex: 1; overflow-y: auto; font-family: Consolas, monospace; white-space: pre-wrap; font-size: 13px; margin: 5px 0;}
 
+/* Streaming Buttons */
+.streaming-row { display: flex; gap: 10px; margin-top: 10px; justify-content: center; }
+.stream-btn { text-decoration: none; text-align: center; color: #333; flex: 1; max-width: 150px; font-weight: bold; padding: 8px;}
+.stream-btn:hover { background: #d0d6db; }
+#btnSpotify { border: 1px solid #1DB954; color: #1DB954; background: #f0fdf4; }
+#btnSpotify:hover { background: #dcfce7; }
+#btnApple { border: 1px solid #fa243c; color: #fa243c; background: #fff1f2; }
+#btnApple:hover { background: #ffe4e6; }
+#btnYoutube { border: 1px solid #FF0000; color: #FF0000; background: #fef2f2; }
+#btnYoutube:hover { background: #fee2e2; }
+
 /* Status & Counts */
 .status-lbl { font-weight: bold; margin-top: 10px; }
 .text-success { color: green; font-weight: normal; }

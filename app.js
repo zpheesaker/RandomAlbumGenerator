@@ -226,7 +226,7 @@ function displayAlbum(album) {
         els.btnSpotify.href = `spotify:search:${query}`;
         els.btnApple.href = `music://search?term=${query}`;
         els.btnYoutube.href = `youtube://results?search_query=${query}+full+album`;
-        els.btnQobuz.href = `qobuz://search?q=${query}`;
+        els.btnQobuz.href = `https://open.qobuz.com/search?q=${query}`;
     } else {
         els.btnSpotify.href = `https://open.spotify.com/search/${query}/albums`;
         els.btnApple.href = `https://music.apple.com/us/search?term=${query}`;

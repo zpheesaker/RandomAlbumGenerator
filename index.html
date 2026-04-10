@@ -74,7 +74,7 @@
             </div>
             
             <details id="matchedAlbumsWrapper" class="applied-filters-details">
-                <summary style="font-size: 1.2rem; font-weight: 600; color: #e2e8f0; margin-top: 5px;">View Matched Albums (<span id="lblMatchCount">0</span>)</summary>
+                <summary>View Matched Albums (<span id="lblMatchCount">0</span>)</summary>
                 <div class="matched-albums-list">
                     <ul id="lstMatchedAlbums"></ul>
                 </div>
@@ -84,17 +84,17 @@
                 <summary>View Applied Filters (<span id="appliedFilterCount">0</span>)</summary>
                 <div id="lblAppliedFilters" class="applied-filters"></div>
             </details>
-        </div>
 
-        <div class="panel right-panel">
-            <details class="applied-filters-details" style="margin-bottom: 20px; text-align: left;">
-                <summary style="font-size: 1.1rem; color: #e2e8f0; border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 10px;">Search Database Directly...</summary>
-                <div style="margin-top: 10px;">
+            <details class="applied-filters-details" style="margin-top: 5px;">
+                <summary>Search Database Directly...</summary>
+                <div style="margin-top: 10px; text-align: left;">
                     <input type="text" id="txtAlbumSearch" placeholder="Type artist or album name...">
                     <ul id="lstSearchResults" class="search-results"></ul>
                 </div>
             </details>
-            
+        </div>
+
+        <div class="panel right-panel">
             <h2>Album Details</h2>
             <pre id="txtAlbumDetails">Loading database...</pre>
             

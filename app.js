@@ -534,7 +534,9 @@ els.btnOpenMenu.onclick = () => {
 els.btnCloseMenu.onclick = () => {
     els.filterDrawer.classList.remove('open');
     els.filterOverlay.classList.remove('open');
-};els.btnApply.onclick = els.btnCloseMenu.onclick;els.filterOverlay.onclick = els.btnCloseMenu;
+};
+els.btnApply.onclick = () => { els.btnCloseMenu.onclick(); els.btnRandom.onclick(); };
+els.filterOverlay.onclick = els.btnCloseMenu.onclick;
 
 // Tab Handlers
 els.tabGenres.onclick = () => {

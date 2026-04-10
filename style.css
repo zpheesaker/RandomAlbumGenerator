@@ -58,7 +58,7 @@ body { margin: 0; padding: 0; background: #1a1a1c; color: #e2e8f0; line-height: 
 .panel { background: #222224; padding: 25px; border: 1px solid #333; border-radius: 8px; flex: 1; display: flex; flex-direction: column; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; box-sizing: border-box;}
 
 /* Main actions are now isolated */
-.main-actions-panel { flex: none; align-items: center; justify-content: center; padding: 30px;}
+.main-actions-panel { flex: none; align-items: center; justify-content: center; padding: 15px 20px;}
 
 /* Adjusted search panel */
 .right-panel { flex: 1; overflow: visible; height: auto; }
@@ -89,8 +89,8 @@ input[type="text"]:focus { border-color: #ff7f50; }
 .actions-main { width: 100%; max-width: none; }
 button { padding: 8px 12px; border: 1px solid #444; border-radius: 4px; cursor: pointer; flex: 1; background: #2a2a2c; font-size: 13px; color: #e2e8f0; transition: all 0.2s;}
 button:hover { background: #3a3a3c; border-color: #555; }
-.primary-btn { background: #ff7f50; color: #000; border: none; font-weight: 600; padding: 10px; }
-.primary-btn:hover { background: #ffa07a; }
+.primary-btn { background: #3a3a3c; color: #e2e8f0; border: 1px solid #555; font-weight: 600; padding: 10px; font-size: 14px; }
+.primary-btn:hover { background: #4a4a4c; border-color: #666; color: #fff; }
 .secondary-btn { background: #2a2a2c; font-weight: 500; }
 .small-btn { padding: 5px 8px; flex: 1; font-size: 13px; white-space: nowrap; }
 
@@ -128,8 +128,9 @@ pre { background: #111112; padding: 15px; border: 1px solid #333; border-radius:
 .text-success { color: #68d391; font-weight: normal; }
 
 /* Applied Filters Details */
-.applied-filters-details { width: 100%; text-align: center; margin-top: 10px; }
-.applied-filters-details summary { cursor: pointer; color: #a0aec0; display: inline-block; padding: 5px 10px; list-style: none; }
+.applied-filters-details { width: 100%; text-align: center; margin-top: 3px; border-bottom: 1px solid #333; padding-bottom: 3px; }
+.applied-filters-details:last-child { border-bottom: none; padding-bottom: 0; }
+.applied-filters-details summary { cursor: pointer; color: #e2e8f0; font-size: 0.9rem; font-weight: 500; display: inline-block; padding: 2px 10px; list-style: none; transition: color 0.2s; }
 .applied-filters-details summary::-webkit-details-marker { display: none; }
 .applied-filters-details summary:hover { color: #ff7f50 !important; }
 .applied-filters { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 8px; width: 100%; }
@@ -148,9 +149,9 @@ pre { background: #111112; padding: 15px; border: 1px solid #333; border-radius:
 
 /* Tree specific */
 details { margin-left: 15px; }
-summary { cursor: pointer; padding: 4px 0; color: #a0aec0;}
+summary { display: list-item; list-style-position: inside; cursor: pointer; padding: 4px 0; color: #a0aec0;}
 summary:hover { color: #ff7f50; }
-.tree-row { display: inline-flex; justify-content: space-between; align-items: center; width: calc(100% - 20px); vertical-align: middle; }
+.tree-row { display: inline-flex; justify-content: space-between; align-items: center; width: 85%; vertical-align: top; }
 .tree-row span { padding-right: 15px; } /* Ensures text doesn't clip checkboxes */
 .tree-row-leaf { margin-left: 14px; } /* To align with summary text */
 details > div { margin-top: 4px; }

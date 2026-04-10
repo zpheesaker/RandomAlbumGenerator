@@ -9,45 +9,93 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
-    <div id="app">
-        <!-- Left Panel: Filters & Search -->
-        <div class="panel left-panel">
-            <h2>Filters & Search</h2>
-                
-            <details class="mobile-collapse" id="grpGenres">
-                <summary class="lbl-like">Genre Hierarchy</summary>
-                <div id="genreTree" class="scroll-box">Loading genres...</div>
-                </details>
-                
-                <details class="mobile-collapse" id="grpDesc">
-                    <summary class="lbl-like">Descriptors</summary>
-                    <div class="desc-contents">
-                        <input type="text" id="txtSearchDescriptors" placeholder="Search descriptors...">
-                        <div class="actions-row">
-                            <button id="btnSelectAll">Select All</button>
-                            <button id="btnDeselectAll">Deselect All</button>
-                        </div>
-                        <div id="descriptorList" class="scroll-box">Loading descriptors...</div>
-                    </div>
-                </details>
-            
-            <div class="actions-row actions-main" style="margin-top: 15px;">
-                <button id="btnRandom" class="primary-btn">Pick Random Album</button>
-                <button id="btnClear" class="secondary-btn">Clear Filters</button>
-            </div>
-            <div id="lblMatchCount" class="status-lbl">Matched albums: 0</div>
+    <!-- Main content wrapper -->
+    <div class="main-content">
+        <div class="top-header">
+            <button id="btnOpenMenu" class="hamburger-btn" title="Filters & Settings">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <h1>Random Album Generator</h1>
         </div>
 
-        <!-- Right Panel: Album Details -->
-        <div class="panel right-panel">
-            <div class="search-header">
-                <h2>Search Albums:</h2>
+        <div id="app">
+            <div id="filterOverlay" class="drawer-overlay"></div>
+        <div id="filterDrawer" class="filter-drawer">
+            <div class="drawer-header">
+                <h2>Filters Setup</h2>
+                <button id="btnCloseMenu" class="drawer-close">&times;</button>
             </div>
             
-            <input type="text" id="txtAlbumSearch" placeholder="Type artist or album name...">
-            <ul id="lstSearchResults" class="search-results"></ul>
+            <div class="drawer-body">
+                <div class="filter-tabs">
+                    <div id="tabGenres" class="filter-tab active">Genres</div>
+                    <div id="tabDesc" class="filter-tab">Descriptors</div>
+                </div>
+
+                <!-- Genres Section -->
+                <div id="secGenres" class="filter-content active">
+                    <div style="margin-bottom: 6px;">
+                        <input type="text" id="txtSearchGenres" placeholder="Search genres...">
+                    </div>
+                    <div class="actions-row">
+                        <button id="btnSelectAllGenres" class="small-btn">Select All</button>
+                        <button id="btnDeselectAllGenres" class="small-btn">Deselect All</button>
+                    </div>
+                    <div id="genreTree" class="scroll-box">Loading genres...</div>
+                </div>
+
+                <!-- Descriptors Section -->
+                <div id="secDesc" class="filter-content">
+                    <div style="margin-bottom: 6px;">
+                        <input type="text" id="txtSearchDescriptors" placeholder="Search descriptors...">
+                    </div>
+                    <div class="desc-mode-toggle">
+                        <label><input type="radio" name="descMode" id="chkDescMatchAny" value="any" checked> Match Any</label>
+                        <label><input type="radio" name="descMode" id="chkDescMatchAll" value="all"> Match All</label>
+                    </div>
+                    <div class="actions-row">
+                        <button id="btnSelectAll" class="small-btn">Select All</button>
+                        <button id="btnDeselectAll" class="small-btn">Deselect All</button>
+                    </div>
+                    <div id="descriptorList" class="scroll-box">Loading descriptors...</div>
+                </div>
+            </div>
             
-            <h2 style="margin-top: 15px;">Album Details</h2>
+            <div class="drawer-footer" style="display: flex; gap: 8px;">
+                <button id="btnClear" class="secondary-btn" style="flex: 1; padding: 10px;">Clear Filters</button>
+                <button id="btnApply" class="primary-btn" style="flex: 1; padding: 10px;">Apply Filters</button>
+            </div>
+        </div>
+
+        <!-- Main Panel: Album Details & Actions -->
+        <div class="panel main-actions-panel" style="position: relative;">
+            <div class="actions-row actions-main">
+                <button id="btnRandom" class="primary-btn">Pick Random Album</button>
+            </div>
+            
+            <details id="matchedAlbumsWrapper" class="applied-filters-details">
+                <summary style="font-size: 1.2rem; font-weight: 600; color: #e2e8f0; margin-top: 5px;">View Matched Albums (<span id="lblMatchCount">0</span>)</summary>
+                <div class="matched-albums-list">
+                    <ul id="lstMatchedAlbums"></ul>
+                </div>
+            </details>
+
+            <details id="appliedFiltersWrapper" class="applied-filters-details" style="display: none;">
+                <summary>View Applied Filters (<span id="appliedFilterCount">0</span>)</summary>
+                <div id="lblAppliedFilters" class="applied-filters"></div>
+            </details>
+        </div>
+
+        <div class="panel right-panel">
+            <details class="applied-filters-details" style="margin-bottom: 20px; text-align: left;">
+                <summary style="font-size: 1.1rem; color: #e2e8f0; border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 10px;">Search Database Directly...</summary>
+                <div style="margin-top: 10px;">
+                    <input type="text" id="txtAlbumSearch" placeholder="Type artist or album name...">
+                    <ul id="lstSearchResults" class="search-results"></ul>
+                </div>
+            </details>
+            
+            <h2>Album Details</h2>
             <pre id="txtAlbumDetails">Loading database...</pre>
             
             <div id="streamingLinks" class="streaming-row" style="display: none;">

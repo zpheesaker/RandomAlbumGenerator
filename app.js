@@ -2,22 +2,32 @@
 const state = {
     albums: [],
     descriptors: new Map(), // Checkbox state for descriptors
+    genres: new Map(), // Checkbox state for genres
     validGenres: new Set(),
     currentAlbum: null,
-    selectedGenre: "Any Genre",
-    suppressEvents: false
+    isAnyGenre: true
 };
 
 // UI Elements
 const els = {
     tree: document.getElementById('genreTree'),
     txtSearchDesc: document.getElementById('txtSearchDescriptors'),
+    txtSearchGenres: document.getElementById('txtSearchGenres'),
     btnSelectAll: document.getElementById('btnSelectAll'),
     btnDeselectAll: document.getElementById('btnDeselectAll'),
+    btnSelectAllGenres: document.getElementById('btnSelectAllGenres'),
+    btnDeselectAllGenres: document.getElementById('btnDeselectAllGenres'),
     descList: document.getElementById('descriptorList'),
     btnRandom: document.getElementById('btnRandom'),
+    btnListAll: document.getElementById('btnListAll'),
+    btnApply: document.getElementById('btnApply'),
     btnClear: document.getElementById('btnClear'),
     lblMatchCount: document.getElementById('lblMatchCount'),
+    lblAppliedFilters: document.getElementById('lblAppliedFilters'),
+    appliedFiltersWrapper: document.getElementById('appliedFiltersWrapper'),
+    appliedFilterCount: document.getElementById('appliedFilterCount'),
+    matchedAlbumsWrapper: document.getElementById('matchedAlbumsWrapper'),
+    lstMatchedAlbums: document.getElementById('lstMatchedAlbums'),
     txtAlbumSearch: document.getElementById('txtAlbumSearch'),
     lstSearchResults: document.getElementById('lstSearchResults'),
     txtAlbumDetails: document.getElementById('txtAlbumDetails'),
@@ -25,22 +35,25 @@ const els = {
     btnSpotify: document.getElementById('btnSpotify'),
     btnApple: document.getElementById('btnApple'),
     btnYoutube: document.getElementById('btnYoutube'),
-    btnQobuz: document.getElementById('btnQobuz')
+    btnQobuz: document.getElementById('btnQobuz'),
+    
+    // Hamburger Menu elements
+    btnOpenMenu: document.getElementById('btnOpenMenu'),
+    btnCloseMenu: document.getElementById('btnCloseMenu'),
+    filterOverlay: document.getElementById('filterOverlay'),
+    filterDrawer: document.getElementById('filterDrawer'),
+    tabGenres: document.getElementById('tabGenres'),
+    tabDesc: document.getElementById('tabDesc'),
+    secGenres: document.getElementById('secGenres'),
+    secDesc: document.getElementById('secDesc'),
+    chkDescMatchAll: document.getElementById('chkDescMatchAll'),
+    chkDescMatchAny: document.getElementById('chkDescMatchAny')
 };
 
 function getAlbumId(a) { return `${a.artist_name} - ${a.release_name}`; }
 
 // --- Initialization ---
-function initMobileCollapses() {
-    const isMobile = window.innerWidth <= 900;
-    document.querySelectorAll('.mobile-collapse').forEach(d => {
-        d.open = !isMobile;
-    });
-}
-window.addEventListener('resize', initMobileCollapses);
-
 window.addEventListener('DOMContentLoaded', async () => {
-    initMobileCollapses();
     try {
         const [csvRes, jsonRes, descRes] = await Promise.all([
             fetch('Data/rym_clean1.csv'),
@@ -55,6 +68,16 @@ window.addEventListener('DOMContentLoaded', async () => {
         const csvText = await csvRes.text();
         const hierarchy = await jsonRes.json();
         const descText = await descRes.text();
+
+        // Move "Scenes & Movements" under "Genres" if it exists at root
+        if (hierarchy && hierarchy.children) {
+            const gNode = hierarchy.children.find(c => c.name === "Genres");
+            const sIdx = hierarchy.children.findIndex(c => c.name === "Scenes & Movements");
+            if (gNode && sIdx > -1) {
+                const sNode = hierarchy.children.splice(sIdx, 1)[0];
+                gNode.children.push(sNode);
+            }
+        }
 
         Papa.parse(csvText, {
             header: true, skipEmptyLines: true,
@@ -89,8 +112,19 @@ window.addEventListener('DOMContentLoaded', async () => {
                         
                         els.txtAlbumDetails.textContent = "Data successfully loaded! Choose filters and pick an album.";
                         els.tree.innerHTML = "";
+                        
+                        // Seed all genres from tree to map
+                        function seedGenres(n) {
+                            if (n.name !== "Root" && n.name !== "Genres" && n.name !== "Any Genre") {
+                                state.genres.set(n.name, true); // default true for Any
+                            }
+                            if (n.children) n.children.forEach(c => seedGenres(c));
+                        }
+                        seedGenres(hierarchy);
+                        state.hierarchy = hierarchy;
+                        
                         renderDescList();
-                        renderTree(hierarchy, els.tree);
+                        renderTree(state.hierarchy, els.tree);
                         updateMatches();
                     }
                 });
@@ -104,14 +138,26 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 // --- Filtering Logic ---
 function getFilteredPool() {
-    const isAnyGenre = state.selectedGenre === "Any Genre";
+    // If all genres are true, it's any genre
+    let allG = true; let anyG = false;
+    state.genres.forEach(val => { if (!val) allG = false; else anyG = true; });
+    state.isAnyGenre = allG;
+    
+    state.validGenres.clear();
+    if (!state.isAnyGenre) {
+        state.genres.forEach((val, key) => {
+            if (val) state.validGenres.add(key.toLowerCase());
+        });
+    }
     
     const activeDesc = new Set();
     state.descriptors.forEach((val, key) => { if (val) activeDesc.add(key); });
+    
+    const matchAllDesc = els.chkDescMatchAll.checked;
 
     return state.albums.filter(a => {
         // Genre Match
-        if (!isAnyGenre) {
+        if (!state.isAnyGenre) {
             let gMatch = false;
             for (let g of a._gSet) {
                 if (state.validGenres.has(g)) { gMatch = true; break; }
@@ -119,12 +165,22 @@ function getFilteredPool() {
             if (!gMatch) return false;
         }
         
-        // Desc Match (Any matched)
-        let dMatch = false;
-        for (let d of a._dSet) {
-            if (activeDesc.has(d)) { dMatch = true; break; }
+        // Desc Match
+        if (activeDesc.size > 0) {
+            if (matchAllDesc) {
+                // Must have all active descriptors
+                for (let desc of activeDesc) {
+                    if (!a._dSet.has(desc)) return false;
+                }
+            } else {
+                // Match Any
+                let dMatch = false;
+                for (let d of a._dSet) {
+                    if (activeDesc.has(d)) { dMatch = true; break; }
+                }
+                if (!dMatch) return false;
+            }
         }
-        if (!dMatch && activeDesc.size > 0) return false;
         
         return true;
     });
@@ -132,7 +188,90 @@ function getFilteredPool() {
 
 function updateMatches() {
     const pool = getFilteredPool();
-    els.lblMatchCount.textContent = `Matched albums: ${pool.length}`;
+    els.lblMatchCount.textContent = pool.length;
+    
+    // Update Applied Filters Label
+    els.lblAppliedFilters.innerHTML = '';
+    let filterCount = 0;
+    
+    let hasDesc = false;
+    let activeDescCount = 0;
+    state.descriptors.forEach(val => { if(val) { hasDesc = true; activeDescCount++; } });
+    const totalDesc = state.descriptors.size;
+
+    if (state.isAnyGenre && !hasDesc) {
+        els.appliedFiltersWrapper.style.display = 'none';
+        els.appliedFiltersWrapper.removeAttribute('open');
+    } else {
+        els.appliedFiltersWrapper.style.display = 'block';
+        
+        let chipsRendered = 0;
+        const maxChips = 15;
+
+        // Render Genre Chips
+        if (state.isAnyGenre) {
+            const span = document.createElement('span');
+            span.className = 'filter-chip';
+            span.textContent = 'All Genres';
+            els.lblAppliedFilters.appendChild(span);
+            filterCount++;
+            chipsRendered++;
+        } else {
+            state.genres.forEach((val, key) => {
+                if (val) {
+                    if (chipsRendered < maxChips) {
+                        const span = document.createElement('span');
+                        span.className = 'filter-chip';
+                        span.textContent = key;
+                        els.lblAppliedFilters.appendChild(span);
+                    }
+                    filterCount++;
+                    chipsRendered++;
+                }
+            });
+        }
+        
+        // Render Descriptor Chips
+        if (activeDescCount === totalDesc && totalDesc > 0) {
+            const span = document.createElement('span');
+            span.className = 'filter-chip';
+            span.textContent = 'All Descriptors';
+            span.style.color = '#e2e8f0';
+            span.style.borderColor = '#444';
+            els.lblAppliedFilters.appendChild(span);
+            filterCount++;
+            chipsRendered++;
+        } else {
+            state.descriptors.forEach((val, key) => {
+                if (val) {
+                    if (chipsRendered < maxChips) {
+                        const span = document.createElement('span');
+                        span.className = 'filter-chip';
+                        span.textContent = key + (els.chkDescMatchAll.checked ? ' (AND)' : '');
+                        span.style.color = '#e2e8f0'; // differentiate descriptors slightly
+                        span.style.borderColor = '#444';
+                        els.lblAppliedFilters.appendChild(span);
+                    }
+                    filterCount++;
+                    chipsRendered++;
+                }
+            });
+        }
+        
+        if (chipsRendered > maxChips) {
+            const overflow = chipsRendered - maxChips;
+            const span = document.createElement('span');
+            span.className = 'filter-chip';
+            span.textContent = `+ ${overflow} more`;
+            span.style.background = '#2a2a2c';
+            els.lblAppliedFilters.appendChild(span);
+        }
+        
+        els.appliedFilterCount.textContent = filterCount;
+    }
+
+    // Close matched list if open when filters change
+    els.matchedAlbumsWrapper.removeAttribute('open');
 }
 
 // --- Renderers ---
@@ -157,53 +296,156 @@ function renderDescList(filterStr = "") {
     });
 }
 
-function renderTree(node, container) {
-    if (node.name === "Root") {
-        node.children.forEach(c => renderTree(c, container));
-        return;
+function renderTree(node, container, filterStr = "") {
+    const q = filterStr.toLowerCase();
+
+    function buildNode(n, containerObj) {
+        if (n.name === "Root") {
+            n.children.forEach(c => buildNode(c, containerObj));
+            return;
+        }
+
+        // Check search match
+        let hasMatch = n.name.toLowerCase().includes(q);
+        function checkChildrenMatch(cn) {
+            if (cn.name.toLowerCase().includes(q)) return true;
+            if (cn.children) return cn.children.some(checkChildrenMatch);
+            return false;
+        }
+        if (q && !hasMatch && n.children) hasMatch = checkChildrenMatch(n);
+        
+        // Display logic for searching
+        if (q && !hasMatch) return; // skip if doesn't match and children dont match
+
+        const isParent = n.children && n.children.length > 0;
+        const wrp = isParent ? document.createElement('details') : document.createElement('div');
+        if (isParent) wrp.open = Boolean(q); // Auto open if searching
+        if (n.name === "Genres") wrp.open = true;
+        
+        const header = isParent ? document.createElement('summary') : document.createElement('div');
+        if (!isParent) header.className = "tree-row-leaf";
+        
+        const row = document.createElement('div');
+        row.className = 'tree-row';
+        const labelSpan = document.createElement('span');
+        labelSpan.textContent = n.name;
+        row.appendChild(labelSpan);
+        
+        // Setup checkbox on Top Level "Genres"
+        if (n.name !== "Genres" && n.name !== "Any Genre") {
+            const chk = document.createElement('input');
+            chk.type = 'checkbox';
+            chk.className = 'genre-chk';
+            chk.dataset.genreName = n.name;
+            chk.checked = state.genres.get(n.name) || false;
+            
+            // Checkbox logic: If checked/unchecked, affect it and ALL its children recursively!
+            chk.onchange = e => {
+                const val = e.target.checked;
+                
+                // Toggle self
+                state.genres.set(n.name, val);
+                
+                // Toggle children recursively
+                function toggleChildren(childNode) {
+                    if (childNode.name !== "Genres" && childNode.name !== "Any Genre") {
+                        state.genres.set(childNode.name, val);
+                    }
+                    if (childNode.children) childNode.children.forEach(toggleChildren);
+                }
+                if (n.children) toggleChildren(n);
+
+                updateMatches();
+                
+                // Instead of completely clearing and re-rendering DOM (which resets open/closed `<details>`),
+                // Sync the actual DOM checkboxes manually so that your manually opened dropdowns stay exactly as they were!
+                document.querySelectorAll('.genre-chk').forEach(el => {
+                    if (state.genres.has(el.dataset.genreName)) {
+                        el.checked = state.genres.get(el.dataset.genreName);
+                    }
+                });
+            };
+            
+            // Do not toggle expand/collapse when checking the box itself!
+            chk.onclick = e => e.stopPropagation();
+            
+            row.appendChild(chk);
+        }
+        
+        header.appendChild(row);
+        wrp.appendChild(header);
+        
+        if (isParent) {
+            const childrenWrapper = document.createElement('div');
+            n.children.forEach(c => buildNode(c, childrenWrapper));
+            wrp.appendChild(childrenWrapper);
+        }
+        
+        containerObj.appendChild(wrp);
     }
     
-    const isParent = node.children && node.children.length > 0;
-    const wrp = isParent ? document.createElement('details') : document.createElement('div');
-    if (isParent && node.name === "Genres") wrp.open = true; // Auto open main list
-    
-    const header = isParent ? document.createElement('summary') : document.createElement('span');
-    header.textContent = node.name;
-    header.style.cursor = 'pointer';
-    if (!isParent) header.style.paddingLeft = '20px';
-    
-    header.onclick = (e) => {
-        if (!isParent) e.stopPropagation();
-        
-        document.querySelectorAll('.genre-active').forEach(x => { x.style.fontWeight = 'normal'; x.classList.remove('genre-active'); });
-        header.style.fontWeight = 'bold';
-        header.classList.add('genre-active');
-        
-        state.selectedGenre = node.name;
-        rebuildValidGenresSet(node);
-        updateMatches();
-    };
-    
-    wrp.appendChild(header);
-    if (isParent) {
-        node.children.forEach(c => {
-            const childContainer = document.createElement('div');
-            renderTree(c, wrp);
-        });
-    }
-    container.appendChild(wrp);
+    container.innerHTML = '';
+    buildNode(node, container);
 }
 
-function rebuildValidGenresSet(node) {
-    state.validGenres.clear();
-    function addLayer(n) {
-        if (n.name !== "Genres" && n.name !== "Root" && n.name !== "Any Genre") {
-            state.validGenres.add(n.name.toLowerCase());
-        }
-        if (n.children) n.children.forEach(c => addLayer(c));
+els.chkDescMatchAll.onchange = () => updateMatches();
+els.chkDescMatchAny.onchange = () => updateMatches();
+
+els.btnListAll ? els.btnListAll.onclick = null : null; // Remove legacy button ref if any exists
+
+let renderTimeout = null;
+els.matchedAlbumsWrapper.ontoggle = () => {
+    if (els.matchedAlbumsWrapper.open) {
+        els.lstMatchedAlbums.innerHTML = '<li style="text-align:center;">Loading list...</li>';
+        
+        // Timeout to let the UI finish animating open
+        clearTimeout(renderTimeout);
+        renderTimeout = setTimeout(() => {
+            const pool = getFilteredPool();
+            if (pool.length === 0) {
+                els.lstMatchedAlbums.innerHTML = '<li>No matched albums to list.</li>';
+                return;
+            }
+            
+            // Sort pool by avg_rating descending
+            const sorted = pool.slice().sort((a, b) => {
+                const r1 = parseFloat(a.avg_rating) || 0;
+                const r2 = parseFloat(b.avg_rating) || 0;
+                return r2 - r1;
+            });
+
+            els.lstMatchedAlbums.innerHTML = '';
+            
+            // Limit render to prevent DOM freezing permanently on max lists
+            const maxToRender = Math.min(sorted.length, 300); 
+            
+            for(let idx = 0; idx < maxToRender; idx++) {
+                const album = sorted[idx];
+                const li = document.createElement('li');
+                li.textContent = `${idx + 1}. ${album.artist_name} - ${album.release_name}`;
+                li.onclick = () => {
+                    displayAlbum(album);
+                    els.matchedAlbumsWrapper.removeAttribute('open');
+                };
+                els.lstMatchedAlbums.appendChild(li);
+            }
+            
+            if (sorted.length > maxToRender) {
+                const li = document.createElement('li');
+                li.textContent = `...and ${sorted.length - maxToRender} more (refine filters to see all)`;
+                li.style.textAlign = 'center';
+                li.style.color = '#a0aec0';
+                els.lstMatchedAlbums.appendChild(li);
+            }
+        }, 30); // slight delay lets the accordion visually drop down
+    } else {
+        // clear DOM memory when closed
+        els.lstMatchedAlbums.innerHTML = '';
     }
-    addLayer(node);
-}
+};
+
+// We don't need rebuildValidGenresSet anymore as genres map holds boolean and getFilteredPool builds validGenres
+
 
 function displayAlbum(album) {
     state.currentAlbum = album;
@@ -250,13 +492,58 @@ els.btnSelectAll.onclick = () => { state.descriptors.forEach((_, k) => state.des
 els.btnDeselectAll.onclick = () => { state.descriptors.forEach((_, k) => state.descriptors.set(k, false)); renderDescList(els.txtSearchDesc.value); updateMatches(); };
 els.txtSearchDesc.oninput = (e) => { renderDescList(e.target.value); };
 
+// Genre Handlers
+els.btnSelectAllGenres.onclick = () => {
+    state.genres.forEach((_, k) => state.genres.set(k, true));
+    updateMatches();
+    document.querySelectorAll('.genre-chk').forEach(el => {
+        if (state.genres.has(el.dataset.genreName)) {
+            el.checked = true;
+        }
+    });
+};
+els.btnDeselectAllGenres.onclick = () => {
+    state.genres.forEach((_, k) => state.genres.set(k, false));
+    updateMatches();
+    document.querySelectorAll('.genre-chk').forEach(el => {
+        if (state.genres.has(el.dataset.genreName)) {
+            el.checked = false;
+        }
+    });
+};
+els.txtSearchGenres.oninput = (e) => { els.tree.innerHTML = ''; renderTree(state.hierarchy, els.tree, e.target.value); };
+
 els.btnClear.onclick = () => {
     state.descriptors.forEach((_, k) => state.descriptors.set(k, true));
+    state.genres.forEach((_, k) => state.genres.set(k, true));
     els.txtSearchDesc.value = "";
+    els.txtSearchGenres.value = "";
+    
     renderDescList();
-    state.selectedGenre = "Any Genre";
-    document.querySelectorAll('.genre-active').forEach(x => { x.style.fontWeight = 'normal'; x.classList.remove('genre-active'); });
+    els.tree.innerHTML = ''; renderTree(state.hierarchy, els.tree);
+    
+    state.isAnyGenre = true;
     updateMatches();
+};
+
+// Hamburger Handlers
+els.btnOpenMenu.onclick = () => {
+    els.filterDrawer.classList.add('open');
+    els.filterOverlay.classList.add('open');
+};
+els.btnCloseMenu.onclick = () => {
+    els.filterDrawer.classList.remove('open');
+    els.filterOverlay.classList.remove('open');
+};els.btnApply.onclick = els.btnCloseMenu.onclick;els.filterOverlay.onclick = els.btnCloseMenu;
+
+// Tab Handlers
+els.tabGenres.onclick = () => {
+    els.tabGenres.classList.add('active'); els.secGenres.classList.add('active');
+    els.tabDesc.classList.remove('active'); els.secDesc.classList.remove('active');
+};
+els.tabDesc.onclick = () => {
+    els.tabDesc.classList.add('active'); els.secDesc.classList.add('active');
+    els.tabGenres.classList.remove('active'); els.secGenres.classList.remove('active');
 };
 
 els.txtAlbumSearch.oninput = (e) => {

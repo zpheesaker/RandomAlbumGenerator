@@ -1,0 +1,1025 @@
+{
+    "name": "Root",
+    "children": [
+        {
+            "name": "atmosphere",
+            "key": "",
+            "count": 0,
+            "children": [
+                {
+                    "name": "apocalyptic",
+                    "key": "apocalyptic",
+                    "count": 141
+                },
+                {
+                    "name": "cold",
+                    "key": "cold",
+                    "count": 272
+                },
+                {
+                    "name": "dark",
+                    "key": "dark",
+                    "count": 809,
+                    "children": [
+                        {
+                            "name": "funereal",
+                            "key": "funereal",
+                            "count": 20
+                        },
+                        {
+                            "name": "infernal",
+                            "key": "infernal",
+                            "count": 58
+                        },
+                        {
+                            "name": "ominous",
+                            "key": "ominous",
+                            "count": 274
+                        }
+                    ]
+                },
+                {
+                    "name": "epic",
+                    "key": "epic",
+                    "count": 365
+                },
+                {
+                    "name": "ethereal",
+                    "key": "ethereal",
+                    "count": 403
+                },
+                {
+                    "name": "futuristic",
+                    "key": "futuristic",
+                    "count": 284
+                },
+                {
+                    "name": "hypnotic",
+                    "key": "hypnotic",
+                    "count": 431
+                },
+                {
+                    "name": "martial",
+                    "key": "martial",
+                    "count": 10
+                },
+                {
+                    "name": "mechanical",
+                    "key": "mechanical",
+                    "count": 158
+                },
+                {
+                    "name": "medieval",
+                    "key": "medieval",
+                    "count": 38
+                },
+                {
+                    "name": "mysterious",
+                    "key": "mysterious",
+                    "count": 300
+                },
+                {
+                    "name": "natural",
+                    "key": "natural",
+                    "count": 6,
+                    "children": [
+                        {
+                            "name": "aquatic",
+                            "key": "aquatic",
+                            "count": 48
+                        },
+                        {
+                            "name": "desert",
+                            "key": "desert",
+                            "count": 40
+                        },
+                        {
+                            "name": "forest",
+                            "key": "forest",
+                            "count": 53
+                        },
+                        {
+                            "name": "rain",
+                            "key": "rain",
+                            "count": 23
+                        },
+                        {
+                            "name": "tropical",
+                            "key": "tropical",
+                            "count": 62
+                        }
+                    ]
+                },
+                {
+                    "name": "nocturnal",
+                    "key": "nocturnal",
+                    "count": 570
+                },
+                {
+                    "name": "party",
+                    "key": "party",
+                    "count": 182
+                },
+                {
+                    "name": "pastoral",
+                    "key": "pastoral",
+                    "count": 168
+                },
+                {
+                    "name": "peaceful",
+                    "key": "peaceful",
+                    "count": 132
+                },
+                {
+                    "name": "psychedelic",
+                    "key": "psychedelic",
+                    "count": 719
+                },
+                {
+                    "name": "ritualistic",
+                    "key": "ritualistic",
+                    "count": 41
+                },
+                {
+                    "name": "seasonal",
+                    "key": "seasonal",
+                    "count": 1,
+                    "children": [
+                        {
+                            "name": "autumn",
+                            "key": "autumn",
+                            "count": 149
+                        },
+                        {
+                            "name": "spring",
+                            "key": "spring",
+                            "count": 61
+                        },
+                        {
+                            "name": "summer",
+                            "key": "summer",
+                            "count": 328
+                        },
+                        {
+                            "name": "winter",
+                            "key": "winter",
+                            "count": 97
+                        }
+                    ]
+                },
+                {
+                    "name": "space",
+                    "key": "space",
+                    "count": 104
+                },
+                {
+                    "name": "spiritual",
+                    "key": "spiritual",
+                    "count": 179
+                },
+                {
+                    "name": "surreal",
+                    "key": "surreal",
+                    "count": 439
+                },
+                {
+                    "name": "suspenseful",
+                    "key": "suspenseful",
+                    "count": 104
+                },
+                {
+                    "name": "tribal",
+                    "key": "tribal",
+                    "count": 47
+                },
+                {
+                    "name": "urban",
+                    "key": "urban",
+                    "count": 589
+                },
+                {
+                    "name": "warm",
+                    "key": "warm",
+                    "count": 794
+                }
+            ]
+        },
+        {
+            "name": "form",
+            "key": "",
+            "count": 0,
+            "children": [
+                {
+                    "name": "ballad",
+                    "key": "ballad",
+                    "count": 16
+                },
+                {
+                    "name": "concept album",
+                    "key": "conceptalbum",
+                    "count": 364
+                },
+                {
+                    "name": "ensemble",
+                    "key": "ensemble",
+                    "count": 1,
+                    "children": [
+                        {
+                            "name": "a cappella",
+                            "key": "acappella",
+                            "count": 2
+                        },
+                        {
+                            "name": "acoustic",
+                            "key": "acoustic",
+                            "count": 210
+                        },
+                        {
+                            "name": "choral",
+                            "key": "choral",
+                            "count": 10
+                        },
+                        {
+                            "name": "instrumental",
+                            "key": "instrumental",
+                            "count": 412
+                        },
+                        {
+                            "name": "orchestral",
+                            "key": "orchestral",
+                            "count": 43
+                        },
+                        {
+                            "name": "vocal group",
+                            "key": "vocalgroup",
+                            "count": 17
+                        },
+                        {
+                            "name": "chamber music",
+                            "key": "chambermusic",
+                            "count": 12
+                        }
+                    ]
+                },
+                {
+                    "name": "medley",
+                    "key": "medley",
+                    "count": 1
+                },
+                {
+                    "name": "monologue",
+                    "key": "monologue",
+                    "count": 2
+                },
+                {
+                    "name": "novelty",
+                    "key": "novelty",
+                    "count": 3,
+                    "children": [
+                        {
+                            "name": "jingle",
+                            "key": "jingle",
+                            "count": 2
+                        }
+                    ]
+                },
+                {
+                    "name": "parody",
+                    "key": "parody",
+                    "count": 2
+                },
+                {
+                    "name": "skit",
+                    "key": "skit",
+                    "count": 1
+                },
+                {
+                    "name": "suite",
+                    "key": "suite",
+                    "count": 31
+                },
+                {
+                    "name": "opera",
+                    "key": "opera",
+                    "count": 1,
+                    "children": [
+                        {
+                            "name": "rock opera",
+                            "key": "rockopera",
+                            "count": 33
+                        }
+                    ]
+                },
+                {
+                    "name": "sonata",
+                    "key": "sonata",
+                    "count": 1
+                },
+                {
+                    "name": "symphony",
+                    "key": "symphony",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "lyrics",
+            "key": "",
+            "count": 0,
+            "children": [
+                {
+                    "name": "apathetic",
+                    "key": "apathetic",
+                    "count": 60
+                },
+                {
+                    "name": "boastful",
+                    "key": "boastful",
+                    "count": 292
+                },
+                {
+                    "name": "cryptic",
+                    "key": "cryptic",
+                    "count": 259
+                },
+                {
+                    "name": "hateful",
+                    "key": "hateful",
+                    "count": 68
+                },
+                {
+                    "name": "humorous",
+                    "key": "humorous",
+                    "count": 302
+                },
+                {
+                    "name": "misanthropic",
+                    "key": "misanthropic",
+                    "count": 212
+                },
+                {
+                    "name": "optimistic",
+                    "key": "optimistic",
+                    "count": 141
+                },
+                {
+                    "name": "pessimistic",
+                    "key": "pessimistic",
+                    "count": 154
+                },
+                {
+                    "name": "poetic",
+                    "key": "poetic",
+                    "count": 452
+                },
+                {
+                    "name": "rebellious",
+                    "key": "rebellious",
+                    "count": 344
+                },
+                {
+                    "name": "sarcastic",
+                    "key": "sarcastic",
+                    "count": 289
+                },
+                {
+                    "name": "satirical",
+                    "key": "satirical",
+                    "count": 116
+                },
+                {
+                    "name": "serious",
+                    "key": "serious",
+                    "count": 71
+                },
+                {
+                    "name": "vulgar",
+                    "key": "vulgar",
+                    "count": 160
+                }
+            ]
+        },
+        {
+            "name": "mood",
+            "key": "",
+            "count": 0,
+            "children": [
+                {
+                    "name": "aggressive",
+                    "key": "aggressive",
+                    "count": 568
+                },
+                {
+                    "name": "angry",
+                    "key": "angry",
+                    "count": 390
+                },
+                {
+                    "name": "anxious",
+                    "key": "anxious",
+                    "count": 550
+                },
+                {
+                    "name": "bittersweet",
+                    "key": "bittersweet",
+                    "count": 953
+                },
+                {
+                    "name": "calm",
+                    "key": "calm",
+                    "count": 192,
+                    "children": [
+                        {
+                            "name": "meditative",
+                            "key": "meditative",
+                            "count": 113
+                        }
+                    ]
+                },
+                {
+                    "name": "disturbing",
+                    "key": "disturbing",
+                    "count": 63
+                },
+                {
+                    "name": "energetic",
+                    "key": "energetic",
+                    "count": 1662,
+                    "children": [
+                        {
+                            "name": "manic",
+                            "key": "manic",
+                            "count": 256
+                        }
+                    ]
+                },
+                {
+                    "name": "happy",
+                    "key": "happy",
+                    "count": 150
+                },
+                {
+                    "name": "lethargic",
+                    "key": "lethargic",
+                    "count": 81
+                },
+                {
+                    "name": "longing",
+                    "key": "longing",
+                    "count": 274
+                },
+                {
+                    "name": "mellow",
+                    "key": "mellow",
+                    "count": 730,
+                    "children": [
+                        {
+                            "name": "soothing",
+                            "key": "soothing",
+                            "count": 239
+                        }
+                    ]
+                },
+                {
+                    "name": "passionate",
+                    "key": "passionate",
+                    "count": 1159
+                },
+                {
+                    "name": "playful",
+                    "key": "playful",
+                    "count": 900
+                },
+                {
+                    "name": "quirky",
+                    "key": "quirky",
+                    "count": 383
+                },
+                {
+                    "name": "romantic",
+                    "key": "romantic",
+                    "count": 498
+                },
+                {
+                    "name": "sad",
+                    "key": "sad",
+                    "count": 174,
+                    "children": [
+                        {
+                            "name": "depressive",
+                            "key": "depressive",
+                            "count": 203
+                        },
+                        {
+                            "name": "lonely",
+                            "key": "lonely",
+                            "count": 444
+                        },
+                        {
+                            "name": "melancholic",
+                            "key": "melancholic",
+                            "count": 1206
+                        },
+                        {
+                            "name": "sombre",
+                            "key": "sombre",
+                            "count": 475
+                        }
+                    ]
+                },
+                {
+                    "name": "scary",
+                    "key": "scary",
+                    "count": 24
+                },
+                {
+                    "name": "sensual",
+                    "key": "sensual",
+                    "count": 176
+                },
+                {
+                    "name": "sentimental",
+                    "key": "sentimental",
+                    "count": 332
+                },
+                {
+                    "name": "uplifting",
+                    "key": "uplifting",
+                    "count": 478,
+                    "children": [
+                        {
+                            "name": "triumphant",
+                            "key": "triumphant",
+                            "count": 115
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "style",
+            "key": "",
+            "count": 0,
+            "children": [
+                {
+                    "name": "anthemic",
+                    "key": "anthemic",
+                    "count": 336
+                },
+                {
+                    "name": "atmospheric",
+                    "key": "atmospheric",
+                    "count": 1268
+                },
+                {
+                    "name": "atonal",
+                    "key": "atonal",
+                    "count": 16
+                },
+                {
+                    "name": "avant-garde",
+                    "key": "avant-garde",
+                    "count": 229
+                },
+                {
+                    "name": "chaotic",
+                    "key": "chaotic",
+                    "count": 195
+                },
+                {
+                    "name": "complex",
+                    "key": "complex",
+                    "count": 433
+                },
+                {
+                    "name": "dense",
+                    "key": "dense",
+                    "count": 441
+                },
+                {
+                    "name": "dissonant",
+                    "key": "dissonant",
+                    "count": 178
+                },
+                {
+                    "name": "eclectic",
+                    "key": "eclectic",
+                    "count": 569
+                },
+                {
+                    "name": "heavy",
+                    "key": "heavy",
+                    "count": 742
+                },
+                {
+                    "name": "lo-fi",
+                    "key": "lo-fi",
+                    "count": 212
+                },
+                {
+                    "name": "lush",
+                    "key": "lush",
+                    "count": 675
+                },
+                {
+                    "name": "melodic",
+                    "key": "melodic",
+                    "count": 2010
+                },
+                {
+                    "name": "microtonal",
+                    "key": "microtonal",
+                    "count": 6
+                },
+                {
+                    "name": "minimalistic",
+                    "key": "minimalistic",
+                    "count": 116
+                },
+                {
+                    "name": "noisy",
+                    "key": "noisy",
+                    "count": 463
+                },
+                {
+                    "name": "polyphonic",
+                    "key": "polyphonic",
+                    "count": 14
+                },
+                {
+                    "name": "progressive",
+                    "key": "progressive",
+                    "count": 454
+                },
+                {
+                    "name": "raw",
+                    "key": "raw",
+                    "count": 555
+                },
+                {
+                    "name": "repetitive",
+                    "key": "repetitive",
+                    "count": 317
+                },
+                {
+                    "name": "rhythmic",
+                    "key": "rhythmic",
+                    "count": 1218
+                },
+                {
+                    "name": "soft",
+                    "key": "soft",
+                    "count": 178
+                },
+                {
+                    "name": "sparse",
+                    "key": "sparse",
+                    "count": 92
+                },
+                {
+                    "name": "technical",
+                    "key": "technical",
+                    "count": 313
+                }
+            ]
+        },
+        {
+            "name": "technique",
+            "key": "",
+            "count": 0,
+            "children": [
+                {
+                    "name": "composition",
+                    "key": "",
+                    "count": 0,
+                    "children": [
+                        {
+                            "name": "aleatory",
+                            "key": "aleatory",
+                            "count": 7
+                        },
+                        {
+                            "name": "generative music",
+                            "key": "generativemusic",
+                            "count": 4
+                        },
+                        {
+                            "name": "improvisation",
+                            "key": "improvisation",
+                            "count": 129
+                        },
+                        {
+                            "name": "uncommon time signatures",
+                            "key": "uncommontimesignatures",
+                            "count": 237
+                        }
+                    ]
+                },
+                {
+                    "name": "production",
+                    "key": "",
+                    "count": 0,
+                    "children": [
+                        {
+                            "name": "sampling",
+                            "key": "sampling",
+                            "count": 385
+                        },
+                        {
+                            "name": "Wall of Sound",
+                            "key": "wallofsound",
+                            "count": 31
+                        },
+                        {
+                            "name": "mashup",
+                            "key": "mashup",
+                            "count": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "theme",
+            "key": "",
+            "count": 0,
+            "children": [
+                {
+                    "name": "abstract",
+                    "key": "abstract",
+                    "count": 224
+                },
+                {
+                    "name": "alienation",
+                    "key": "alienation",
+                    "count": 122
+                },
+                {
+                    "name": "conscious",
+                    "key": "conscious",
+                    "count": 326
+                },
+                {
+                    "name": "crime",
+                    "key": "crime",
+                    "count": 157
+                },
+                {
+                    "name": "death",
+                    "key": "death",
+                    "count": 272,
+                    "children": [
+                        {
+                            "name": "suicide",
+                            "key": "suicide",
+                            "count": 41
+                        }
+                    ]
+                },
+                {
+                    "name": "drugs",
+                    "key": "drugs",
+                    "count": 344,
+                    "children": [
+                        {
+                            "name": "alcohol",
+                            "key": "alcohol",
+                            "count": 64
+                        }
+                    ]
+                },
+                {
+                    "name": "fairy tale",
+                    "key": "fairytale",
+                    "count": 3
+                },
+                {
+                    "name": "fantasy",
+                    "key": "fantasy",
+                    "count": 162
+                },
+                {
+                    "name": "folklore",
+                    "key": "folklore",
+                    "count": 32
+                },
+                {
+                    "name": "hedonism",
+                    "key": "hedonistic",
+                    "count": 209
+                },
+                {
+                    "name": "history",
+                    "key": "history",
+                    "count": 45
+                },
+                {
+                    "name": "holiday",
+                    "key": "",
+                    "count": 0,
+                    "children": [
+                        {
+                            "name": "Christmas",
+                            "key": "christmas",
+                            "count": 2,
+                            "children": [
+                                {
+                                    "name": "carol",
+                                    "key": "carol",
+                                    "count": 1
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Halloween",
+                            "key": "halloween",
+                            "count": 5
+                        }
+                    ]
+                },
+                {
+                    "name": "ideology",
+                    "key": "ideology",
+                    "count": 1,
+                    "children": [
+                        {
+                            "name": "anti-religious",
+                            "key": "anti-religious",
+                            "count": 50
+                        },
+                        {
+                            "name": "pagan",
+                            "key": "pagan",
+                            "count": 36
+                        },
+                        {
+                            "name": "political",
+                            "key": "political",
+                            "count": 370,
+                            "children": [
+                                {
+                                    "name": "anarchism",
+                                    "key": "anarchism",
+                                    "count": 18
+                                },
+                                {
+                                    "name": "nationalism",
+                                    "key": "nationalism",
+                                    "count": 1
+                                },
+                                {
+                                    "name": "protest",
+                                    "key": "protest",
+                                    "count": 79
+                                }
+                            ]
+                        },
+                        {
+                            "name": "religious",
+                            "key": "religious",
+                            "count": 59,
+                            "children": [
+                                {
+                                    "name": "Christian",
+                                    "key": "christian",
+                                    "count": 37
+                                },
+                                {
+                                    "name": "Islamic",
+                                    "key": "islamic",
+                                    "count": 2
+                                }
+                            ]
+                        },
+                        {
+                            "name": "satanism",
+                            "key": "satanic",
+                            "count": 47
+                        }
+                    ]
+                },
+                {
+                    "name": "introspective",
+                    "key": "introspective",
+                    "count": 885
+                },
+                {
+                    "name": "LGBTQ",
+                    "key": "lgbt",
+                    "count": 117
+                },
+                {
+                    "name": "love",
+                    "key": "love",
+                    "count": 734,
+                    "children": [
+                        {
+                            "name": "breakup",
+                            "key": "breakup",
+                            "count": 228
+                        }
+                    ]
+                },
+                {
+                    "name": "mythology",
+                    "key": "mythology",
+                    "count": 57
+                },
+                {
+                    "name": "nature",
+                    "key": "nature",
+                    "count": 96
+                },
+                {
+                    "name": "occult",
+                    "key": "occult",
+                    "count": 93
+                },
+                {
+                    "name": "paranormal",
+                    "key": "paranormal",
+                    "count": 18
+                },
+                {
+                    "name": "patriotic",
+                    "key": "patriotic",
+                    "count": 3
+                },
+                {
+                    "name": "philosophical",
+                    "key": "philosophical",
+                    "count": 205,
+                    "children": [
+                        {
+                            "name": "existential",
+                            "key": "existential",
+                            "count": 146
+                        },
+                        {
+                            "name": "nihilistic",
+                            "key": "nihilistic",
+                            "count": 100
+                        }
+                    ]
+                },
+                {
+                    "name": "science fiction",
+                    "key": "sciencefiction",
+                    "count": 132
+                },
+                {
+                    "name": "self-hatred",
+                    "key": "self-hatred",
+                    "count": 58
+                },
+                {
+                    "name": "sexual",
+                    "key": "sexual",
+                    "count": 422
+                },
+                {
+                    "name": "sports",
+                    "key": "sports",
+                    "count": 5
+                },
+                {
+                    "name": "violence",
+                    "key": "violence",
+                    "count": 186
+                },
+                {
+                    "name": "war",
+                    "key": "war",
+                    "count": 78
+                }
+            ]
+        },
+        {
+            "name": "vocals",
+            "key": "",
+            "count": 0,
+            "children": [
+                {
+                    "name": "androgynous vocals",
+                    "key": "androgynousvocals",
+                    "count": 83
+                },
+                {
+                    "name": "deadpan",
+                    "key": "deadpan",
+                    "count": 72
+                },
+                {
+                    "name": "female vocalist",
+                    "key": "femalevocals",
+                    "count": 802
+                },
+                {
+                    "name": "male vocalist",
+                    "key": "malevocals",
+                    "count": 3542
+                }
+            ]
+        }
+    ]
+}

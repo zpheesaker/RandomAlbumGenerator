@@ -1,2 +1,10 @@
 .vscode/
 Staging/
+Code/
+*.ps1
+*.bat
+build_desc_hierarchy.py
+AI_HANDOFF.md
+AI_HANDOFF_backup.md
+.gitignore
+Data/hiararchy_raw.md
